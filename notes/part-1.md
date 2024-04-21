@@ -44,4 +44,20 @@ If we try to cat out the commit file, we see nothing useful.
 1. ```vim <file name>```: Open file in 'vim'.
 2. ```i```: Press i to enter insert mode, and then start typing your content.
 3. ```Esc```: Press Esc to exit insert mode when you've finished typing.
-4. ```:wq```: Save the changes and exit vim by typing: ```:wq```
+4. ```:wq```: Save the changes and exit vim by typing: ```:wq```.
+
+
+#### Listing out values
+
+- ```--list``` : where it will list out the entirety of the config.
+- ```--get-regexp <regex>``` : takes a pattern and looks for all names matching.
+
+#### We might accidentally add the same keys multiple times to the git config. And when we look for them, we will have multiple keys as a result.
+
+
+```--unset``` and ```--unset-all``` unsets values (if there are multiple keys, we should use --unset-all. We can't unset just one of many).
+
+
+#### config is just a folder (```git config```)
+
+```--get``` will return local even if global was added later.
