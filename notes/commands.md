@@ -26,9 +26,9 @@
 |```git checkout -b<branch name> ``` | Create new branch |
 |```git log --graph --oneline ``` | Displays everything more concise way |
 |```git merge <branch name>``` | Merge branches |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
+|```git reflog ``` | History of HEAD and other references, such as commits and merges |
+|```git reset --hard HEAD~2 ``` | Reset current branch's head to two commits prior to the current one, and it also resets the working directory and the index to match the state/ |
+|```git log --oneline --parents ``` | Displays parents |
 |``` ``` |  |
 |``` ``` |  |
 |``` ``` |  |
