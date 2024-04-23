@@ -22,7 +22,7 @@
 
 
 
-#### Solving merging problem (Merge Conflit)
+#### Solving merging problem (Merge Conflit) in our example
 
 1. ```git branch -D foo``` Delete branch.
 1. ```git checkout main``` tried to switch branches but got an error:
@@ -43,7 +43,7 @@ README.md: needs merge
 
 - It allows us to update underneath our set of changes.
 - In some sence, we can think that it 'rewrites the history'.
-- Allows us what is currently the reality and then our changes. So it allows us to check our code in new reality, instead of checking it in previous reality.
+- Allows us to apply what is currently the reality and then our changes. So it allows us to check our code in new reality, instead of checking it in previous reality.
 - We can do 'Fast Forward Merge' (commits are not necessary).
 
 The basic steps of rebase:
@@ -63,20 +63,20 @@ A----D----E----X----Y   (main)
                       B----C (foo)
                      /
 A----D----E----X----Y   (main)
-````
-d 
-1. Execute git rebase main:
-First, ensure you're on the foo branch:
-git checkout foo
-2. Then, execute the rebase command to rebase foo onto main:
-git rebase main
-3. Checkout the last commit on main:
-Git will automatically rewind the foo branch to the commit where it diverged from main, which is commit A.
-Then, Git will checkout the tip of the main branch, which is commit Y.
-4. Play one commit at a time from foo:
-Git will start applying each commit from foo (commits B and C) on top of commit Y in sequence.
-Update foo branch to the current commit SHA:
-Once all commits are successfully applied on top of main, Git will update the foo branch to point to the latest commit of the rebase, which is commit C.
+```
+
+#### Execute git rebase 'main':
+1. First, ensure we're on the foo 'branch':
+- ```git checkout foo```
+2. Then, execute the rebase command to rebase 'foo' onto 'main':
+- ```git rebase main```
+3. Checkout the last commit on 'main':
+- Git will automatically rewind the 'foo' branch to the commit where it diverged from 'main', which is commit 'A'.
+- Then, Git will checkout the tip of the 'main' branch, which is commit 'Y'.
+4. Play one commit at a time from 'foo':
+- Git will start applying each commit from 'foo' (commits 'B' and 'C') on top of commit 'Y' in sequence.
+- Update 'foo' branch to the current commit SHA:
+- Once all commits are successfully applied on top of main, Git will update the 'main' branch to point to the latest commit of the rebase, which is commit 'C'.
 
 
 
@@ -89,3 +89,86 @@ target branch: bar
 
 checkout latest commit on: bar
 play one commit at a time from: main
+
+
+#### Rebase Pros
+- We can have a clean history with no merge commits. If we use ```git log``` this can help with searching.
+
+#### Rebase Cons
+- Alters branch history. If we already had e.g. 'foo' on a remote git (on another repo), we'd have two diferent branches named the same thing with different histories. We would have to <b>force</b> push it to the remote again.
+
+
+#### Never Change History of a Public Branch!!
+
+- Always Merge on public branches!!
+- Rebase on Private branches.
+
+
+
+### HEAD
+
+- Use it only when we have to!
+
+### Cherry pick
+
+```git-cherry-pick``` - allows to take one or more commits specifically.
+ 
+
+This is better than using ```git merge <deleted branch's sha>``to recover deleted file, because if we use merge, it starts merging from the best common ancestor. And if we have many different commits and branches that we don't need in this case, we still would get all those history. Cherry-pick helps us to get exactly what we need.
+
+Cherry pick requires working tree and index (staging area) to be clean (no modifications from the HEAD commit).
+
+
+### Remote Git
+
+A remote is a copy of the repo in somewhere else (not necessarily on github).
+
+It is another git repo that is of the same project and has changes we may need.
+
+Usually named 'origin'.
+
+
+### Gitism
+
+There are two naming conventions:
+
+#### Remote is project repo
+
+Typically when we have a remote git repo, it is called <i>origin</i>. This is the source of truth repo.
+
+#### Remote is our fork of some other repo
+
+- Our remote repo (fork) is called <i>origin</i>.
+- The project repo is named <i>upstream</i>.
+
+
+### Fetch
+
+We can fetch all the git state from out remote repo by executing ```git fetch```. This won't update the current branches checked out, just where the ```origin/*``` has set to.
+
+Fetching keeps our local repo's remotes up to date, but it doesn't alter our state.
+
+
+### Git pull
+
+```git pull``` more convinient way (than fetch) to merge changes into out branch.
+
+```git branch --set-upstream-to=origin/main main``` - set tracking information. ```origin/main``` this specification is important because we tell git which remote are we linking to.
+
+
+When we want to checkout a remote branch that we fetched but we don't have it locally, we can use ```git switch -c <branch name> ```.
+
+- ```git switch -c <branch name>``` creates a new local branch and checks it out based on the remote branch we specify.
+
+### Advice about using Rebase
+
+When we pull changes from the remote authority repo, we will rebase the changes (instead of many merge commits). Always move changes to the front with rebase and make a single commit.
+
+- A long lived branch with many merge commits is dificult to revert.
+- If every change is a single commit, then the ability to revert is very trivial.
+- Test changes agains the current state of master, not current state of what we fetched.
+
+
+### Git push
+
+```git push``` take our changes and move to the remote repo. Like ```git pull```, if we are not 'tracking' then we can't push. We have to specify the remote branch name.
