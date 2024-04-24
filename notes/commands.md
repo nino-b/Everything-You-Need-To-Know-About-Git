@@ -1,57 +1,10 @@
 |              Command                     | Explanation |
 |------------------------------------------|-------------|
-|```git branch -M <name>```                | Rename the current branch |
-|```git.add <path to file> ```             | It will add zero or more files to the staging area (index). |
-|```git commit -m <message> ```            | Will commit the changes that are in the staging area. It will take staged files in the index (staging area) and will turn it into a commit (with author name, time, the contents of the change). It will produce SHA ( Secure Hashing Algorithm) |
-|```git status ```                         | Will describe the state of your git repo, which includes tracked, stage and untracked changes. |
-|```git log ```                            | Will show history of commits (in my case it showed in the browser). |
-|```git cat-file -p <some sha> ```         | Will print out any sha we want. It will echo out the contents of the sha. We can inspect any commit or anything else.                      |
-|```mkdir <directory name> ```             | Create a directory |
-|```touch <file name> ```                  | create a file |
-|```vim <file name> ```                    | Open file in vim |
-|```git branch <branch name> ```           | Creates a new branch. But it does not swotch branches! |
-|```git branch ```                         | Check what branches do we have |
-|``` cat .git/refs/heads/main ```          | Will display sha of branches |
-|```git switch <branch name> ```           | Switch branches |
-|```git checkout <branch name> ```         | Switch branches |
-|```git checkout -b<branch name> ```       | Create new branch |
-|```git log --graph --oneline ```          | Displays everything more concise way |
-|```git merge <branch name>```             | Merge branches |
-|```git reflog ```                         | History of HEAD and other references, such as commits and merges |
-|```git reset --hard HEAD~2 ```            | Reset current branch's head to two commits prior to the current one, and it also resets the working directory and the index to match the state/ |
-|```git log --oneline --parents ```        | Displays parents |
-|```git reflog ```                         | Shows where head has been |
-|```git reflog -4 ```                      | We will see only 4 lines of reflog |
-|```cat .git/logs/HEAD \| tail -3 ```      | We will see last 3 logs (remember: last line of result of ```git reflog``` is the first line of this command's result)                     |
-|```git cat-file -p <sha> <new file's name where we want to recover deleted information> ``` | Recover deleted file |
-|```git diff --staged ```                  | Shows changes that are staged for the next commit |
-|```git cherry-pick <sha> ```              | Allows to take one or more commits specifically |
-|```git remote add <name> <uri> ```        | Add a remote |
-|```git remote -v ```                      | View the list repositories associated to out local git repository along with their URLs. |
-|```git fetch ```                          | Fetch all the git state from out remote repo |
-|```git branch -a ```                      | See all branches |
-|```git pull <remote> <branch name> ```    | Merge changes in our branch. |
-|```git branch --set-upstream-to=origin/main main ``` | Set tracking information. Tell git which remote are we linking to. |
-|```git switch -c <branch name> ```        | Creates new local branch and checks it out based on the remote branch we specify. |
-|```git pull --rebase ```                  | Locally Rebase when pull |
-|```git push <remote> <local name>:<remote name> ``` | Allows us to push and have it recieved with a different name. |
-|```git push <remote> :<remote name> ```   | Will delete a branch on the remote. |
 |``` ``` |  |
 |``` ``` |  |
 |``` ``` |  |
 |``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
+
 
 
 
@@ -67,33 +20,94 @@
 
 |   Commands: Configuration Management   |   Explanation   |
 |----------------------------------------|-----------------|
-|```git config --add<section>.<keyname> <value> ``` | Adds a key to our git config |
-|```git config --list \| grep <section> ```         | List out everything with specific section. It will print out local first (does not matter if global was added later). |
-|```git config --get-regexp <regex> ```             | List out everything that matches specific regex. |
-|```git config --get <section>.<key> ```            | Will return last added value.  |
-|```git config --get-all  ```                       | Return all values. |
-|```git config --unset <section>.<key> ```          | Unset values (if there are multiple keys, we should use --unset-all. We can't unset just one of many). |
-|```cat .git/config ```                             |  |
-|```git config --remove-section <section name> ```  | Remove whole section. |
+|```git config --add<section>.<keyname> <value> ``` | Adds or updates a config key in the special section of the git config. |
+|```git config --list \| grep <section> ```         | Lists all configuration settings mathing the specified section using ```grep```. ```--list``` option displays both local and global config settings (at first it always displays local settings, even if global was the last one added). |
+|```git config --get-regexp <regex> ```             | List out all config settings that match specific regex. |
+|```git config --get <section>.<key> ```            | Returns the value of specified config key in the specified section of Git config. It will return last added value.  |
+|```git config --get-all  ```                       | Returns all values associated with a config key. Useful for keys with multiple values. |
+|```git config --unset <section>.<key> ```          | Unset values (if there are multiple keys, we should use --unset-all. We can't unset just one of many). Removes the specified config key from the specified section of Git config. |
+|```git config --unset --all <section>.<key> ```          | Removes all values associated with the specified key in the specified section. Used if  key we want to remove has multiple values and we want to remove all of them. If key has multiple values we can't remove just one, we have to remove all!  |
+|```cat .git/config ```                             | Displays contents of entire git config. |
+|```git config --remove-section <section name> ```  | Removes entire specified section from git config. |
 
 
 
-|   Commands: Config   |   Explanation   |
-|----------------------|-----------------|
+
+|   Commands: Branching and switching   |   Explanation   |
+|---------------------------------------|-----------------|
+|```git branch -M <name>```                | Rename the current branch to `<name>` |
+|```git branch <branch name> ```           | Create a new branch named `<branch name>`. It does not switch branches! |
+|```git branch ```                         | List all local branches. |
+|```git switch <branch name> ```           | Switch to an existing branch named `<branch name>`. |
+|```git checkout <branch name> ```         | Switch to an existing branch named `<branch name>`. |
+|```git checkout -b <branch name> ```       | Create a new branch named `<branch name>` and switch to it. |
+|```git branch -a ```                      | List all local and remote branches. |
+|```git branch --set-upstream-to=origin/<branch name> main ``` | Set the upstream tracking information for the current branch to `origin/<branch name>`. Tell git which remote are we linking to. |
+|```git switch -c <branch name> ```        | Create a new local branch based on the specified remote branch and switch to it. |
 
 
 
-|   Commands: Config   |   Explanation   |
-|----------------------|-----------------|
+
+|   Commands: Status and History   |   Explanation   |
+|----------------------------------|-----------------|
+|```git status ```                         | Describes the state of our git repo, which includes tracked, staged and untracked changes. |
+|```git log ```                            | Shows the history of commits in reverse chronological order. |
+|```git log --graph --oneline ```          | Displays the commit history in a concise format with a graphical representation of branches and merges. |
+|```git log --oneline --parents ```        | Displays each commit on a single line with its parent commits. |
+|```git reflog ```                         | Shows where head has been |
+|```git reflog ```                         | Shows the history of `HEAD` and other references, such as commits and merges. |
+|```git reflog -<number> ```                      | Limits the output to the last e.g. 4 entries in the reflog. |
+|``` cat .git/refs/heads/<branch name> ```          | Displays the SHA of the latest commit on the specified branch. |
+|```cat .git/logs/HEAD \| tail -<number> ```      | Displays the last e.g. 3 entries in the reflog for the `HEAD` reference. (remember: last line of result of ```git reflog``` is the first line of this command's result)                     |
+|```git cat-file -p <some sha> ```         | Prints the contents of the specified git object, such as a commit or a file.                      |
+|```git cat-file -p <sha> <new file's name where we want to recover deleted information> ``` | Recovers deleted file |
 
 
 
-|   Commands: Config   |   Explanation   |
-|----------------------|-----------------|
+
+|   Commands: Staging and Committing   |   Explanation   |
+|--------------------------------------|-----------------|
+|```git.add <path to file> ```             | It will add zero or more files to the staging area (index). |
+|```git commit -m <message> ```            | Commits the changes that are in the staging area, creating a new commit with the specified commit message. The commit includes author information, timestamp, and the contents of the changes. It produces a SHA (Secure Hashing Algorithm) identifier. |
+|```git diff --staged ```                  | Shows the differences between the files in the staging area and the last committed version of those files. |
 
 
-|   Commands: Config   |   Explanation   |
-|----------------------|-----------------|
+
+
+|   Commands: Merging and Cherry-Picking   |   Explanation   |
+|------------------------------------------|-----------------|
+|```git merge <branch name>```             | Merges the changes from the specified branch (`<branch name>`) into the current branch, incorporating the branch's history into the current branch's history. |
+|```git cherry-pick <sha> ```              | Applies the changes introduced by the specified commit (`<sha>`) onto the current branch. It effectively picks the specified commit and applies it on top of the current branch's commit history. |
+
+
+
+
+|   Commands: Remote Operations   |   Explanation   |
+|---------------------------------|-----------------|
+|```git remote add <name> <uri> ```        | Add a named remote repo with the specified URI to the local Git repo. |
+|```git remote -v ```                      | List the names and URLs of all remote repositories associated with the local Git repo. |
+|```git fetch ```                          | Retrieve the latest changes from the remote repository without merging them into the current branch. |
+|```git pull <remote> <branch name> ```    | Fetch the latest changes from the specified remote repository and merge them into the current branch. |
+|```git pull --rebase ```                  | Fetch the latest changes from the remote repository and rebase the current branch onto the fetched changes instead of merging them. |
+|```git push <remote> <local name>:<remote name> ``` | Push the specified local branch to the remote repository with a different name. |
+|```git push <remote> :<remote name> ```   | Delete the specified branch from the remote repository. |
+
+
+
+
+|   Commands: File System Operations   |   Explanation   |
+|--------------------------------------|-----------------|
+|```mkdir <directory name> ```         | Create a new directory with the specified name. |
+|```touch <file name> ```              | Create a new empty file with the specified name. |
+|```vim <file name> ```                | Open the specified file in the Vim text editor for editing. |
+|```cat ```                            | Display the contents of the specified file. |
+
+
+
+
+|   Commands: Miscellaneous   |   Explanation   |
+|-----------------------------|-----------------
+|```git reset --hard HEAD~2 ```            | Reset current branch's HEAD to two commits prior to the current one. It also resets the working directory and the index to match the state of the specified commit. The `--hard` flag indicates that both the working directory and the index will be forcefully updated to reflect the state of the specified commit, potentially discarding any changes in the working directory and the index. |
 
 
 

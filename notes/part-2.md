@@ -8,8 +8,25 @@
 
 ### Merging
 
-1. git will first find the common parent (called: the 'best common ancestor' or 'merge base');
+1. <b>Find the common parent:</b> Git identifies the <b>best common ancestor</b> or <b>merge base</b>, which is the last commit that both branches have in common before diverging.
 2. Plays commits on top of it.
+- Example:
+```
+   (B)---(C)---(D)
+  /               
+(A)              
+  \               
+   (E)---(F)---(G)
+
+``` 
+- Steps:
+  1. Start with a common ancestor commit A.
+  2. Changes from the B-C-D branch are applied on top of commit A, creating a new sequence of commits A-B-C-D.
+  3. Changes from the E-F-G branch are applied on top of commit A, creating a new sequence of commits A-E-F-G.
+  4. Finally, Git creates a merge commit that combines the changes from both branches, resulting in a new commit that has two parents: one from the A-B-C-D sequence and the other from the A-E-F-G sequence.
+  5. So, the resulting commit history after the merge operation would indeed look like 'A-B-C-D-E-F-G', where all changes from both branches are integrated into a single branch.
+
+
 3. Creates a new commit called a 'merge commit' and it will have two parents, from each branch that are being merged.
 
 - <b>Target branch:</b> the branch we are on (not main).
@@ -47,48 +64,11 @@ README.md: needs merge
 - We can do 'Fast Forward Merge' (commits are not necessary).
 
 The basic steps of rebase:
-1. Execute ```git rebase <target branch>```. We will refer to the current branch as ```<current branch>``` later on.
-2. Checkout the last commit on ```<target branch>```.
-3. Play one commit at a time from ```<current branch>``` (plays each commit on top of the last commit).
-4. Once finished will update ```<current branch>``` to the current commit sha. (Once all commits are successfully applied on top, Git will update the current branch to point to the latest commit of the rebase, effectively moving the branch pointer).
+1. Execute ```git rebase <target branch>```: This initiates the rebase process, where ```<target branch>``` is the branch we want to rebase onto. It's important to note that we can also rebase interactively using ```git rebase -i <target branch>``` to have more control over the rebase process, such as squashing commits or reordering them.
+2. Checkout the last commit on ```<target branch>```: After initiating the rebase, Git will temporarily switch to the ```<target branch>```.
+3. Play one commit at a time from ```<current branch>```: During the rebase process, Git will iterate through each commit on ```<current branch>```, one at a time, and apply them on top of the ```<target branch>```. If there are conflicts, Git will pause the rebase process, allowing us to resolve them manually.
+4. Update ```<current branch>``` to the current commit SHA: Once all commits are successfully applied on top of ```<target branch>```, Git will update the ```<current branch>``` to point to the latest commit of the rebase. This effectively moves the branch pointer to the new commit, incorporating the changes from both branches.
 
-
-```
-   B----C (foo)
- 
-  /
-A----D----E----X----Y   (main)
-
-
-                      B----C (foo)
-                     /
-A----D----E----X----Y   (main)
-```
-
-#### Execute git rebase 'main':
-1. First, ensure we're on the foo 'branch':
-- ```git checkout foo```
-2. Then, execute the rebase command to rebase 'foo' onto 'main':
-- ```git rebase main```
-3. Checkout the last commit on 'main':
-- Git will automatically rewind the 'foo' branch to the commit where it diverged from 'main', which is commit 'A'.
-- Then, Git will checkout the tip of the 'main' branch, which is commit 'Y'.
-4. Play one commit at a time from 'foo':
-- Git will start applying each commit from 'foo' (commits 'B' and 'C') on top of commit 'Y' in sequence.
-- Update 'foo' branch to the current commit SHA:
-- Once all commits are successfully applied on top of main, Git will update the 'main' branch to point to the latest commit of the rebase, which is commit 'C'.
-
-
-
-
-
-
-
-main branch: main
-target branch: bar
-
-checkout latest commit on: bar
-play one commit at a time from: main
 
 
 #### Rebase Pros
