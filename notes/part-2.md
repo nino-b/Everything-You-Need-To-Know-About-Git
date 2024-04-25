@@ -152,3 +152,6 @@ When we pull changes from the remote authority repo, we will rebase the changes 
 ### Git push
 
 ```git push``` take our changes and move to the remote repo. Like ```git pull```, if we are not 'tracking' then we can't push. We have to specify the remote branch name.
+
+
+When we use ```git checkout <branch name>```, it automatically tracks.

@@ -77,6 +77,7 @@
 |   Commands: Merging and Cherry-Picking   |   Explanation   |
 |------------------------------------------|-----------------|
 |```git merge <branch name>```             | Merges the changes from the specified branch (`<branch name>`) into the current branch, incorporating the branch's history into the current branch's history. |
+| ```git merge --abort ``` | Abort the merge due to conflict. |
 |```git cherry-pick <sha> ```              | Applies the changes introduced by the specified commit (`<sha>`) onto the current branch. It effectively picks the specified commit and applies it on top of the current branch's commit history. |
 
 
@@ -84,7 +85,7 @@
 
 |   Commands: Remote Operations   |   Explanation   |
 |---------------------------------|-----------------|
-|```git remote add <name> <uri> ```        | Add a named remote repo with the specified URI to the local Git repo. |
+|```git remote add <name of the origin> <uri> ```        | Add a named remote repo with the specified URI to the local Git repo. Name is usually 'origin'. |
 |```git remote -v ```                      | List the names and URLs of all remote repositories associated with the local Git repo. |
 |```git fetch ```                          | Retrieve the latest changes from the remote repository without merging them into the current branch. |
 |```git pull <remote> <branch name> ```    | Fetch the latest changes from the specified remote repository and merge them into the current branch. |
@@ -108,6 +109,7 @@
 |   Commands: Miscellaneous   |   Explanation   |
 |-----------------------------|-----------------
 |```git reset --hard HEAD~2 ```            | Reset current branch's HEAD to two commits prior to the current one. It also resets the working directory and the index to match the state of the specified commit. The `--hard` flag indicates that both the working directory and the index will be forcefully updated to reflect the state of the specified commit, potentially discarding any changes in the working directory and the index. |
+|```git revert <sha> ``` | Creates a new commit that undoes the changes introduced by a previous commit. Useful if we want to undo efects of a particular commit without removing it from the project history. |
 
 
 
@@ -119,13 +121,27 @@
 |```-d ``` | Delete branch |
 |```-D ``` | Delete branch |
 |```-S ``` | Search commit change |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
-|``` ``` |  |
+|```git stash -m <message> ``` | add in the stash |
+|```git stash list ``` | list out stash |
+|```git stash show [--index <index> ] ``` | show diff/ changes (0 based) |
+|```git stash pop ``` | pop the stash |
+|```git stash pop [--index <index> ] ``` | pop the stash at an index |
+|```git reset HEAD <file name> ``` | remove file from staging area |
+|```git reset --soft HEAD~1 ``` | Reset current branch to the commit before the latest commit (HEAD~1) |
+|```git log -S <string> ``` | Search the commit history for changes that introduced or removed instances o a specific string. |
+|```git merge --squash <branch name> ``` |  |
+|```git config --list --local ``` | Local configuration list. |
+|```git checkout --ours <path to the file> ``` |  |
+|```git checkout --theirs <path to the file> ``` |  |
+|```git rebase -i <commitish> ``` |  |
+|```git rebase -i HEAD~3``` |  |
+|```git log --grep foo -p``` |  |
+|``` git log -p -- src/index.js ``` |  |
+|```git bisect run <cmd> ``` |  |
+|```git revert <commitish> ``` |  |
+|```git reset ``` |  |
+|```git commit --amend ``` |  |
+|```git worktree list ``` |  |
 |``` ``` |  |
 |``` ``` |  |
 |``` ``` |  |

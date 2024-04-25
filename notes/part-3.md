@@ -15,9 +15,14 @@ We can think o 'stash' as a stack of temporary changes.
 - ```git stash pop --index <index>```pop a stash at an index
 
 
-### Interactive Rebasing and Squashing
+## Interactive Rebasing and Squashing
 
-Take many commits and turn it into one commit.
+Do it only on private branches. Never on public ones!
+
+### Squashing
+
+Take many commits and turn it into singular commit.
+
 
 
 ### Conflicts
@@ -40,3 +45,10 @@ To solve this problem just checkout on another branch and oush it from there.
 ### Worktrees
 
 Worktree is another copy of our repo without all the weight of our repo. They are more lightweight.
+
+
+### rerere
+
+Stands for <b>Reuse Recorded Resolution</b>.
+
+Git will automatically remember how we handled a specific conflict and will just replay our decision the next time we run into it. We also can delete rereres in case we incorrectly resolved a conflict.
