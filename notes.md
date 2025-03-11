@@ -1,7 +1,12 @@
 
+<style>
+  td {
+    background-color: purple;
+  }
+</style>
 
 <table>
-  <thead>
+  <thead style="background-color: red">
       <tr>
         <th>Operation</th>
         <th>Command</th>
@@ -12,7 +17,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
+      <td style="background-color: orange">1</td>
       <td>1</td>
       <td>1</td>
       <td>1</td>
