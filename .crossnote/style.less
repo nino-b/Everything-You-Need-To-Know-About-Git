@@ -1,0 +1,33 @@
+
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+/* Define some variables for easy color management */
+@oddRowColor: rgb(255, 0, 166);
+@headerColor: rgb(0, 170, 255);
+@borderColor: red;
+
+.markdown-preview {
+  table {
+    border: 1px solid @borderColor;
+    border-radius: 1rem;
+    border-collapse: collapse; 
+    background-color: cyan;
+    width: auto;
+  }
+
+  th {
+    background-color: @headerColor;
+  }
+
+  tr:nth-child(odd) {
+    background-color: @oddRowColor;
+  }
+
+  td {
+    border: 1px solid @borderColor;
+  }
+  thead, tbody {
+    background-color: red;
+  }
+}
