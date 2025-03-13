@@ -1,0 +1,53 @@
+= Git and Command Line Guide
+
+[width="100%", options="header", cols="20%,20%,30%,30%"]
+
+|===
+| Operation | Command | Description | Details
+
+| **Introduction & Man Pages** | `man man` | Read the manual |
+a|
+*Shortcuts:*
+- `j` - goes one line down
+- `k` - goes one line up
+- `d` - goes one half page down
+- `u` - goes one half page up
+- `/ < term >` - will search for term
+- `n` - goes to next search term
+- `N` - goes to previous search term
+
+*Reading manual:*
+- *bold text* - type exactly as shown.
+- _italic text_ - replace with appropriate argument.
+- `[-abc]` - any or all arguments within `[]` are optional.
+- `-a|-b` - options delimited by `|` cannot be used together.
+- `argument ...` - argument is repeatable.
+- `[expression] ...` - entire expression within `[]` is repeatable.
+
+| **What is Git** | | |
+a|
+* Git is a distributed version control system.
+* Work can be done locally.
+* My version of code doesn't have to be your version of code.
+
+*Key Terms:*
+- *Repo*: A Git-tracked project.
+- *Commit*: The entire codebase at a specific point in time. The whole codebase can be regenerated from the commit.
+- *SHA (SHA-1 hash)*: A 40-character string (a-f, 0-9) that represents a Git commit.
+- *Index / Staging Area*: An intermediate area where changes are stored before being committed to the repository. Allows you to review and prepare changes before finalizing them in a commit.
+
+| **Key Facts About Git** | | |
+a|
+- Git is an *acyclic graph*, meaning cycles cannot exist:  
+  Commit A → Commit B → Commit C → Commit A (and so on).
+- Each commit is a node in the graph, and each pointer is a child-to-parent relationship.
+- ⚠️ If you delete untracked files, they are lost forever.
+- ✅ Commit early, commit often—you can always change history later (e.g., squashing).
+- `man git-<op>` for the friendly manual.
+
+| **Git Config** | | Key Facts |
+a|
+- All Git config keys are in the following format: `<section>.<key>`.
+- The `--global` flag ensures you set this key-value globally for all future Git repositories.
+- `user.name` and `user.email` are the keys used in creating a commit tied to you.
+|===

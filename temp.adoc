@@ -1,0 +1,272 @@
+
+| Subject | Command | Description | Details |
+|---------|---------|-------------|---------|
+|   🟠   |    🟡   |     🔴     |    🟢   |
+
+
+
+[cols="1, 1, 2, 3"]
+|===
+| Subject | Command | Description | Details 
+
+| 🔴
+| 🟠 
+| 🟡
+| 🟢  
+
+| 🔴
+| 🟠 
+| 🟡
+| 🟢  
+
+| 🔴
+| 🟠 
+| 🟡
+| 🟢  
+
+|===
+
+
+
+
+*bold*
+
+_italic_
+
+**bold & italic**
+
+`monospace`
+
+sup^erscript^
+
+sub~script~
+
+\escaped
+
+
+
+*Headings*
+
+
+
+`= H1` should be used with `:doctype: book`
+
+== H2
+=== H3
+==== H4
+
+
+- Item 1
+- Item 2
+  * Item 2.1
+  * Item 2.2
+
+
+Hello
+
+. M
+. N
+. O
+
+
+chekclist
+
+* [*] Checked item
+* [ ] Unchecked item
+
+
+Tables
+
+
+Basic List Inside a Table
+|===
+| Feature | Description
+
+| **AsciiDoc**
+a| - Supports Markdown-style lists  
+  - Easy formatting  
+  - Works on GitHub  
+
+| **Markdown**
+a| - Popular  
+  - Limited table features  
+|===
+
+
+
+|===
+| Feature | Details
+
+| **Git Commands**
+a| 
+* **Basic Commands**  
+  - `git init` → Initialize repo  
+  - `git clone` → Clone a repo  
+
+* **Staging & Committing**  
+  1. `git add .` → Stage all files  
+  2. `git commit -m "message"` → Save changes  
+
+* **Branching**  
+  - `git branch` → List branches  
+  - `git checkout` → Switch branch  
+
+| **AsciiDoc Formatting**
+a| 
+* **Text Formatting**  
+  - **Bold** → `*bold*`  
+  - _Italic_ → `_italic_`  
+  - `Monospace` → `+code+`  
+
+* **Lists**  
+  - Supports bullet lists  
+  - Supports numbered lists  
+  - Allows **nested lists**  
+
+|===
+
+
+
+1️⃣ Simple Pipe (|) Table (Most Common)
+
+|===
+| Column 1 | Column 2 | Column 3
+
+| Row 1 Col 1
+| Row 1 Col 2
+| Row 1 Col 3
+
+| Row 2 Col 1
+| Row 2 Col 2
+| Row 2 Col 3
+|===
+
+
+
+
+
+2️⃣ Table with Headers (.Header + cols=...)
+
+.Header Row Example
+[cols="3,1,2"]
+|===
+| Column 1 | Column 2 | Column 3
+
+| A | B | C
+| D | E | F
+|===
+
+
+|===
+| Column 1 | Column 2 | Column 3
+| A1 | B1 | C1
+| A2 | B2 | C2
+|===
+
+
+
+
+
+3️⃣ Delimited Tables (,, ;, or ::)
+
+[format=csv]
+|===
+Name, Age, Country
+Alice, 25, USA
+Bob, 30, UK
+|===
+
+
+
+
+
+4️⃣ AsciiDoc Grid Table (|=== but aligned manually)
+
+[cols="1,1,1"]
+|===
+| A | B | C
+| D | E | F
+| G | H | I
+|===
+
+
+
+
+
+5️⃣ Multi-line Cell Content (Use a|)
+
+|===
+| Column 1 | Column 2
+
+| Short Text
+a| This cell contains
+multiple lines of text.
+|===
+
+
+
+
+
+6️⃣ Table with Bullet Lists
+
+|===
+| Feature | Description
+
+| **AsciiDoc**
+a| - Supports Markdown-style lists  
+  - Easy formatting  
+  - Works on GitHub  
+
+| **Markdown**
+a| - Popular  
+  - Limited table features  
+|===
+
+
+
+
+7️⃣ Table with Merged Columns (colspan) & Rows (rowspan)
+
+|===
+| Name | Age | Country
+
+| Alice | 25 | USA
+.2+| Bob  | 30 | UK
+| Canada
+|===
+
+
+
+
+Hyperlink
+
+link:https://github.com[GitHub]
+
+
+
+Images
+
+image::https://via.placeholder.com/150[Sample Image]
+
+
+
+Inline Code
+
+`git status`
+
+
+Block Code (Multiple Lines)
+
+[source,python]
+----
+print("Hello, AsciiDoc!")
+----
+
+
+Callouts & Notes
+NOTE: This is an important note!
+TIP: A useful tip here.
+WARNING: Be careful with this!
+CAUTION: Proceed with caution.
+
+
